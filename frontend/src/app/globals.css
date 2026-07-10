@@ -1,0 +1,153 @@
+@import "tailwindcss";
+@import "highlight.js/styles/github-dark.css";
+
+:root {
+  --bg: #faf9f6;
+  --surface: #ffffff;
+  --border: #e5e3dc;
+  --text: #1f1e1c;
+  --muted: #757269;
+  --hover: #efece4;
+  --active: #e8e5dc;
+  --accent: #5b5fe3;
+  --assistant-bg: #f3f1ea;
+  --code-bg: #0d1117;
+  --code-header: #161b22;
+  --inline-code-bg: #ece9e0;
+  --error-bg: #fdecec;
+  --error-border: #f3c4c4;
+  --error-text: #b3261e;
+}
+
+:root.dark {
+  --bg: #1a1b1e;
+  --surface: #212226;
+  --border: #2e2f33;
+  --text: #ececec;
+  --muted: #9a9a9a;
+  --hover: #2a2b2f;
+  --active: #2f3035;
+  --accent: #7b7fef;
+  --assistant-bg: #202125;
+  --code-bg: #0d1117;
+  --code-header: #161b22;
+  --inline-code-bg: #2a2b2f;
+  --error-bg: #2c1a1a;
+  --error-border: #5c2b2b;
+  --error-text: #ff8a80;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* Markdown content styling for chat messages */
+.prose-chat {
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  color: var(--text);
+}
+
+.prose-chat > *:first-child {
+  margin-top: 0;
+}
+
+.prose-chat > *:last-child {
+  margin-bottom: 0;
+}
+
+.prose-chat p {
+  margin: 0.6em 0;
+}
+
+.prose-chat ul,
+.prose-chat ol {
+  margin: 0.6em 0;
+  padding-left: 1.4em;
+}
+
+.prose-chat li {
+  margin: 0.25em 0;
+}
+
+.prose-chat h1,
+.prose-chat h2,
+.prose-chat h3 {
+  font-weight: 600;
+  margin: 1em 0 0.5em;
+  line-height: 1.3;
+}
+
+.prose-chat h1 {
+  font-size: 1.3em;
+}
+
+.prose-chat h2 {
+  font-size: 1.15em;
+}
+
+.prose-chat h3 {
+  font-size: 1.05em;
+}
+
+.prose-chat blockquote {
+  border-left: 3px solid var(--border);
+  padding-left: 1em;
+  margin: 0.6em 0;
+  color: var(--muted);
+}
+
+.prose-chat table {
+  border-collapse: collapse;
+  margin: 0.8em 0;
+  width: 100%;
+  font-size: 0.9em;
+}
+
+.prose-chat th,
+.prose-chat td {
+  border: 1px solid var(--border);
+  padding: 0.4em 0.7em;
+  text-align: left;
+}
+
+.prose-chat th {
+  background: var(--assistant-bg);
+  font-weight: 600;
+}
+
+.prose-chat a {
+  word-break: break-word;
+}
+
+.prose-chat hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 1em 0;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
