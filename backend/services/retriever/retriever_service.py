@@ -4,6 +4,7 @@ from services.retriever.query_classifier import QueryClassifier
 from services.retriever.source_selector import SourceSelector
 from services.retriever.bm25_retriever import BM25Retriever
 from services.retriever.hybrid_retriever import HybridRetriever
+
 from services.reranker.reranker_service import RerankerService
 from services.retriever.dedup_service import DedupService
 from models.retrieval.retrieval_result import RetrievalResult
@@ -154,6 +155,8 @@ class RetrieverService:
             all_docs,
             top_k=top_k,
         )
+
+        # For now, we are not using reranker as it is not working well with comparison queries. We will use it later when we have a better reranker model.
         scores = [doc.score for doc in ranked_docs]
         execution.append(
             {

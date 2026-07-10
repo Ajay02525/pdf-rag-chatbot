@@ -1,10 +1,7 @@
 from contextlib import asynccontextmanager
 from fastapi import FastAPI
 
-from services.embedding.embedding_service import EmbeddingService
 from services.llm.llm_factory import LLMFactory
-from services.reranker.reranker_service import RerankerService
-from services.observability.langfuse_service import LangfuseService
 
 
 @asynccontextmanager
@@ -22,7 +19,8 @@ async def lifespan(app: FastAPI):
     # ----------------------------
     # Load Embedding Model
     # ----------------------------
-    EmbeddingService.get_model()
+    # EmbeddingService.get_model()
+    # its not required for now as we are using Jina Embeddings which is an external service and does not require loading a model in the backend.
 
     # ----------------------------
     # Initialize LLM Provider
@@ -32,12 +30,7 @@ async def lifespan(app: FastAPI):
     # ----------------------------
     # Load CrossEncoder
     # ----------------------------
-    _ = RerankerService.model
-
-    # ----------------------------
-    # Initialize Langfuse
-    # ----------------------------
-    LangfuseService.get_client()
+    # _ = RerankerService.model
 
     print("\n===================================")
     print("Application Ready 🚀")

@@ -20,11 +20,18 @@ class Settings(BaseSettings):
 
     # Embedding
     EMBEDDING_MODEL: str = "BAAI/bge-base-en-v1.5"
+    EMBEDDING_PROVIDER: str = "jina"
+    JINA_API_KEY: str
+    JINA_EMBEDDING_MODEL: str = "jina-embeddings-v5-text-small"
+    JINA_CLIENT_URL: str = "https://api.jina.ai/v1/embeddings"
+    JINA_EMBEDDING_DIMENSIONS: int = 768
 
     # Vector DB
     CHROMA_DIR: str = "data/chroma_db"
 
     # Retrieval
+    JINA_RERANKER_MODEL: str = "jina-reranker-v3"
+    JINA_RERANKER_CLIENT_URL: str = "https://api.jina.ai/v1/rerank"
     SEARCH_K: int = 50
     TOP_K: int = 5
 

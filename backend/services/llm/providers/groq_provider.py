@@ -1,7 +1,6 @@
 from groq import Groq
 from config.setting import settings
 from .base_provider import BaseProvider
-from services.observability.decorators import measure_latency
 
 
 class GroqProvider(BaseProvider):
@@ -11,7 +10,6 @@ class GroqProvider(BaseProvider):
 
         self.model = settings.GROQ_MODEL
 
-    @measure_latency("llm")
     def generate(self, prompt: str) -> str:
 
         response = self.client.chat.completions.create(
