@@ -23,28 +23,7 @@ services:
       - ./backend:/app
       - ./backend/data/uploads:/app/data/uploads
       - ./backend/data/chroma_db:/app/data/chroma_db
-      - huggingface_cache:/root/.cache/huggingface
 
     restart: unless-stopped
 
-  prometheus:
-
-    image: prom/prometheus:latest
-
-    container_name: prometheus
-
-    ports:
-      - "9090:9090"
-
-    volumes:
-      - ./monitoring/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
-
-    command:
-      - "--config.file=/etc/prometheus/prometheus.yml"
-
-    depends_on:
-      - backend
-
-volumes:
-
-  huggingface_cache:
+  

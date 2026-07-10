@@ -6,7 +6,6 @@ from prometheus_client import make_asgi_app
 
 from api.routes.ask import router as ask_router
 from api.routes.upload import router as upload_router
-from services.observability.middleware import metrics_middleware
 from api.routes.system import router as system_router
 from fastapi.middleware.cors import CORSMiddleware
 from config.setting import settings
@@ -27,7 +26,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-app.middleware("http")(metrics_middleware)
 metrics_app = make_asgi_app()
 
 app.mount(

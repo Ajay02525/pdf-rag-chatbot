@@ -16,12 +16,6 @@ from services.guardrails.input.toxicity import (
     ToxicityGuardrail,
 )
 
-from services.observability.metrics import (
-    GUARDRAIL_BLOCKED,
-    GUARDRAIL_LATENCY,
-    GUARDRAIL_REQUESTS,
-)
-
 
 class GuardrailEngine:
     """
@@ -57,21 +51,6 @@ class GuardrailEngine:
             result = guardrail.validate(question)
 
             elapsed = time.perf_counter() - start
-
-            GUARDRAIL_REQUESTS.labels(
-                guardrail=guardrail_name,
-            ).inc()
-
-            GUARDRAIL_LATENCY.labels(
-                guardrail=guardrail_name,
-            ).observe(elapsed)
-
-            if not result.allowed:
-                GUARDRAIL_BLOCKED.labels(
-                    guardrail=guardrail_name,
-                ).inc()
-
-                return result
 
         return GuardrailResult(
             allowed=True,
