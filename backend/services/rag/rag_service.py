@@ -20,7 +20,7 @@ from services.guardrails.output.hallucination import HallucinationGuardrail
 from services.guardrails.retrieval.context_validator import (
     ContextValidator,
 )
-
+from config.setting import settings
 from services.execution.execution_engine import ExecutionEngine
 # from services.evaluator.evaluator_service import EvaluatorService
 
@@ -58,7 +58,7 @@ class RAGService:
         )
         engine.update_header(
             temperature=0.1,
-            embedding_model="BAAI/bge-base-en-v1.5",
+            embedding_model=settings.EMBEDDING_MODEL,
             vector_database="ChromaDB",
         )
         start = engine.start_timer()
@@ -171,7 +171,7 @@ class RAGService:
             icon="database",
             fields={
                 "Search Type": "Hybrid Search",
-                "Embedding Model": "BAAI/bge-base-en-v1.5",
+                "Embedding Model": settings.EMBEDDING_MODEL,
                 "Vector DB": "ChromaDB",
                 "Chunks Retrieved": len(docs),
                 "Highest Score": retrieval.highest_score,

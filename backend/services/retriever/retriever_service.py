@@ -8,6 +8,7 @@ from services.retriever.hybrid_retriever import HybridRetriever
 from services.reranker.reranker_service import RerankerService
 from services.retriever.dedup_service import DedupService
 from models.retrieval.retrieval_result import RetrievalResult
+from config.setting import settings
 
 
 class RetrieverService:
@@ -22,8 +23,8 @@ class RetrieverService:
                 "icon": "cpu",
                 "status": "completed",
                 "fields": {
-                    "Embedding Model": "BAAI/bge-base-en-v1.5",
-                    "Dimension": 768,
+                    "Embedding Model": settings.EMBEDDING_MODEL,
+                    "Dimension": settings.JINA_EMBEDDING_DIMENSIONS,
                 },
             }
         )
@@ -161,10 +162,12 @@ class RetrieverService:
         execution.append(
             {
                 "id": "reranker",
-                "title": "Cross Encoder Reranker",
+                "title": "Jina Reranker",
+                "model": settings.JINA_RERANKER_MODEL,
                 "icon": "arrow-up-down",
                 "status": "completed",
                 "fields": {
+                    "model": settings.JINA_RERANKER_MODEL,
                     "Top K": top_k,
                     "Returned": len(ranked_docs),
                     "Highest Score": max(scores) if scores else 0,

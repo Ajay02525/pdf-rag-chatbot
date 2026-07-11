@@ -4,8 +4,8 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 class Settings(BaseSettings):
     # Application
     APP_NAME: str = "PDF RAG Chatbot"
-    APP_ENV: str = "development"
-    DEBUG: bool = True
+    APP_ENV: str = "PROD"
+    DEBUG: bool = False
     FRONTEND_URL: str = "http://localhost:3000"
     # API
     HOST: str = "0.0.0.0"
@@ -19,7 +19,7 @@ class Settings(BaseSettings):
     GROQ_API_KEY: str
 
     # Embedding
-    EMBEDDING_MODEL: str = "BAAI/bge-base-en-v1.5"
+    EMBEDDING_MODEL: str = "jina-embeddings-v5-text-small"
     EMBEDDING_PROVIDER: str = "jina"
     JINA_API_KEY: str
     JINA_EMBEDDING_MODEL: str = "jina-embeddings-v5-text-small"
